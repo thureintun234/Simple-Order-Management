@@ -11,6 +11,8 @@ const app = express()
 
 const BASE_URL = '/api/v1'
 const orderRouter = require('./routes/order.route')
+const customerRouter = require('./routes/customer.route')
+const itemRouter = require('./routes/item.route')
 
 mongoose.set('strictQuery', false)
 mongoose
@@ -31,6 +33,8 @@ app.use(morgan(morganFormat))
 // accepting uploaded photos
 app.use(`${BASE_URL}/uploads`, express.static(path.join(__dirname, 'uploads')))
 app.use(`${BASE_URL}/orders`, orderRouter)
+app.use(`${BASE_URL}/customers`, customerRouter)
+app.use(`${BASE_URL}/items`, itemRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
