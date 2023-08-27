@@ -14,6 +14,12 @@ const orderRouter = require('./routes/order.route')
 const customerRouter = require('./routes/customer.route')
 const itemRouter = require('./routes/item.route')
 
+// Handling Uncaught Exception
+process.on('uncaughtException', (err) => {
+  console.log(`Error: ${err.message}`)
+  console.log('Shutting down due to uncaught expection')
+})
+
 mongoose.set('strictQuery', false)
 mongoose
   .connect(config.MONGO_URI)
